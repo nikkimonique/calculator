@@ -1,0 +1,135 @@
+<!-- 
+Name: Nikki Monique M. Daug
+Date:  
+-->
+<html>
+<head>
+    <title>Html calculator</title>
+</head>
+<style>
+	.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .zero{
+		background-color: #A0FF4A;
+		height: 50px;
+		width: 50px;
+		font-size: 25px;
+		margin: 1px;
+		border:2px solid #3D7F00;
+	}
+	.add, .minus, .multiply, .equals, .reset, .divide{
+		background-color: #61CC00;
+		height: 50px;
+		width: 50px;
+		font-size: 25px;
+		margin: 1px;
+		border:2px solid #3D7F00;
+	}
+
+
+</style>
+<body>
+	<center>
+		<h1>Basic Calculator</h1>
+	    <form name="basiccalcu" >
+		    <input class"output" id="output" type="textfield" readonly name="ans" value="" style="font-size: 20px; margin-bottom: 20px;">
+		    <br>
+		    <input class="seven" type="button" value="7" onClick="display(7)">
+		    <input class="eight" type="button" value="8" onClick="display(8)">
+		    <input class="nine" type="button" value="9" onClick="display(9)">
+		    <input class="add" type="button" value="+" onClick="temporary('+')">
+		    <br>
+		    <input class="four" type="button" value="4" onClick="display(4)">
+		    <input class="five" type="button" value="5" onClick="display(5)">
+		    <input class="six" type="button" value="6" onClick="display(6)">
+		    <input class="minus" type="button" value="-" onClick="temporary('-')">
+		    <br>
+		    
+		    <input class="one" type="button" value="1" onClick="display(1)">
+		    <input class="two" type="button" value="2" onClick="display(2)">
+		    <input class="three" type="button" value="3" onClick="display(3)">
+		    <input class="multiply" type="button" value="*" onClick="temporary('*')">
+		    <br>
+		    <input class="zero" type="button" value="0" onClick="display(0)">
+		    <input class="reset" type="reset" value="C" >
+	    	<input class="equals" type="button" value="=" onClick="compute()">
+	    	<input class="divide" type="button" value="/" onclick="temporary('/')">
+	    </form>
+	</center>
+
+    <script type="text/javascript">
+    	var pressed = 	document.basiccalcu;
+    	var waiting = false;	/*para sa gipang press nga number. */
+    	var firstInput = "";
+    	var op = false;
+    	var secondInput = "";
+    	var answer = "";
+    	var eq = false;
+    	var clear = false;
+
+
+    	function display (num)
+    	{
+    		if(op == false){
+				if(waiting){
+	    			firstInput = num;
+	    		}else{
+	    			if (firstInput == "0"){
+	    				firstInput = num;
+	    			}else{
+	    				firstInput += num;
+	    			}
+	    		} basiccalcu.ans.value = firstInput;
+    		}else{
+    			if(eq){
+	    			secondInput = num;
+	    		}else{
+	    			if (secondInput == "0"){
+	    				secondInput = num;
+	    			}else{
+	    				secondInput += num;
+	    			}
+	    		} basiccalcu.ans.value = secondInput;
+    		}
+    	}
+
+
+    	function temporary (operator)
+    	{
+    		if(operator == '+'){
+    			waiting = true;
+    			op = '+';
+    		}else if(operator == '-'){
+    			waiting = true;
+    			op = '-';
+    		}else if(operator == '*'){
+    			waiting = true;
+    			op = '*';
+    		}else if(operator == '/'){
+    			waiting = true;
+    			op = '/';
+    		}
+    	}
+
+    	function compute (e)
+    	{
+    		if(op == '+'){
+    			answer = parseInt(firstInput, 10) + parseInt(secondInput, 10);
+    			basiccalcu.ans.value = answer;
+    		}else if(op == '-'){
+    			answer = parseInt(firstInput, 10) - parseInt(secondInput, 10);
+    			basiccalcu.ans.value = answer;
+    		}else if(op == '*'){
+    			answer = parseInt(firstInput, 10) * parseInt(secondInput, 10);
+    			basiccalcu.ans.value = answer;
+    		}else if(op == '/'){
+    			answer = parseInt(firstInput,10) / parseInt(secondInput, 10);
+    			basiccalcu.ans.value = answer;
+    		}
+    	}
+
+    	function clear () {
+			document.getElementById("output").reset();
+			}
+    </script>
+
+    </body>
+</html>
